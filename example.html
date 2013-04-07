@@ -1,0 +1,88 @@
+<!--
+/*!
+ * jQuery Cynomys Plugin v1.3.1
+ * https://github.com/z5h/cynomys
+ *
+ * Copyright 2013 Mark Bolusmjak
+ * Released under the MIT license
+ */
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cynomys Example</title>
+
+    <script src="lib/jquery-1.9.1.js"></script>
+    <script src="lib/jquery.cookie.js"></script>
+    <script src="cynomys.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('*').cynomys({cookie: 'clicker', clickDelta: 3, clickAction: function () {
+                console.log('3 clicks');
+                return true;
+            }});
+
+            $(".scrolly").add(window).cynomys({cookie: 'scroller', scrollDelta: 100, scrollAction: function () {
+                console.log('100 scrolls');
+                return true;
+            }});
+
+            $().cynomys({cookie: 'timer', secondsDelta: 5, secondsAction: function () {
+                console.log('5 seconds');
+                return true;
+            }});
+
+        });
+
+
+    </script>
+
+</head>
+<body>
+<p class="scrolly" style="overflow: scroll; text-wrap: none; white-space: nowrap"> Content Content Content Content
+    Content Content
+    Content Content Content Content Content Content </p>
+
+<p> Content</p>
+
+<p> Content</p>
+
+<p> Content</p>
+
+<p> Content</p>
+
+<p> Content</p>
+
+<p> Content</p>
+
+<p> Content</p>
+
+<p> Content</p>
+
+<p> Content</p>
+
+<p> Content</p>
+<br/>
+
+<div class="scrolly" style="width:100px; height:100px; overflow:auto; ">
+    <p> Content</p>
+
+    <p> Content</p>
+
+    <p> Content</p>
+
+    <p> Content</p>
+
+    <p> Content</p>
+
+    <p> Content</p>
+
+    <p> Content</p>
+
+    <p> Content</p>
+
+    <p> Content</p>
+</div>
+
+</body>
+</html>
