@@ -17,7 +17,7 @@
     <script src="cynomys.js"></script>
     <script type="text/javascript">
         $(function () {
-            $('*').cynomys({cookie: 'clicker', clickDelta: 3, clickAction: function () {
+            $('body').cynomys({cookie: 'clicker', clickDelta: 3, clickAction: function () {
                 console.log('3 clicks');
                 return true;
             }});
