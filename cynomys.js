@@ -19,9 +19,9 @@
         var $this = $(this);
 
         var settings = $.extend({
-            scrollDelta: 100,
-            secondsDelta: 5,
-            clickDelta: 5,
+            scrollDelta: 0,
+            secondsDelta: 0,
+            clickDelta: 0,
 
             scrollAction: null,
             secondsAction: null,
@@ -40,6 +40,7 @@
             secondsCounter = 0;
             clickCounter = 0;
         }
+
         resetList.push(resetAll);
         resetAll();
 
@@ -50,9 +51,9 @@
                 scrollCounter = lastValues['scrollCounter'];
                 secondsCounter = lastValues['secondsCounter'];
                 clickCounter = lastValues['clickCounter'];
-            } catch (e){
+            } catch (e) {
             } finally {
-                $.removeCookie("cynomys." + settings.cookie, {path : '/'});
+                $.removeCookie("cynomys." + settings.cookie, {path: '/'});
             }
 
         }
@@ -102,6 +103,28 @@
         });
 
         return $this;
+    };
+    $.fn.cynomys.limit = function(key, ms, f){
+        var cookie = "limit.cynomys." + key;
+        function shouldRun(){
+            var v = $.cookie(cookie);
+            if (v) {
+                var limit = parseInt(v);
+                return isNaN(limit) || $.now() > limit;
+            } else {
+                return true;
+            }
+        }
+        function saveLimit(){
+            $.cookie(cookie, $.now() + ms, {expires: 2, path: '/'});
+        }
+
+        return function(){
+            if (shouldRun()) {
+                f();
+                saveLimit();
+            }
+        }
     };
 })(jQuery);
 

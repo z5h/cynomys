@@ -19,6 +19,7 @@
         $(function () {
             $('body').cynomys({cookie: 'clicker', clickDelta: 3, clickAction: function () {
                 console.log('3 clicks');
+
                 return true;
             }});
 
@@ -27,8 +28,13 @@
                 return true;
             }});
 
+            var onceEvery10Seconds = $.fn.cynomys.limit("x", 10*1000, function(){
+                console.log("10 seconds");
+            });
+
             $().cynomys({cookie: 'timer', secondsDelta: 5, secondsAction: function () {
                 console.log('5 seconds');
+                onceEvery10Seconds();
                 return true;
             }});
 
